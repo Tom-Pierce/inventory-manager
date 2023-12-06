@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+    h1 #{title}: #{category.name}
+
+    p Description: #{category.description}
+
+    if category_products.length > 0
+        p(style="margin-top:1rem;") #[strong Please recategorize or remove the following products before removing this category:]
+        ul
+            each product in category_products
+                li
+                    a(href=product.url) #{product.name}
+                    |   - #{product.stock} in stock
+    else
+        p(style="margin-top:1rem;") #[strong Are you sure you want to permanently remove this category from inventory?]
+
+        form(method="POST", action="")
+            div.form-group
+                button.btn(type='submit') Remove
+            

@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+
+    h1 #{title}: #{product.name}
+
+    p Stock: #{product.stock}
+    p Category: #{product.category.name}
+    p Description: #{product.description}
+
+    p(style="margin-top:1rem;") #[strong Are you sure you want to permanently remove this product from inventory?]
+
+    form(method="POST", action="")
+        div.form-group
+            button.btn(type='submit') Remove
+            

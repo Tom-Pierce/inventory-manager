@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+
+    h1 #{product.name}
+
+    p #{product.description}
+
+    p #[strong Price:] $#{product.price}
+    p #[strong Stock:] #{product.stock}
+    p #[strong Category:] #{product.category.name}
+
+    hr
+    p
+        a(href=`${product.url}/update`) Update product
+    p
+        a(href=`${product.url}/remove`) Remove product

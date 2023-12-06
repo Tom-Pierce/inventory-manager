@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  font-family: "Roboto";
+  display: flex;
+}
+
+a {
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+h1 {
+  padding: 1rem 0 1rem 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid lightgrey;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+.btn {
+  border-radius: 8px;
+  padding: 0.25rem;
+}
+
+.form-group .btn {
+  max-width: 6rem;
+}

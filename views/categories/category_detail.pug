@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+
+    h1 #{category.name}
+
+    p #{category.description}
+
+    ul
+        each product in category_products
+            li
+                    div.product-card
+                        a(href=product.url) #{product.name}
+                        span #{` $${product.price}`}
+                        span #{` // ${product.stock} in stock`}
+
+    hr
+    p
+        a(href=`${category.url}/update`) Update category
+    p
+        a(href=`${category.url}/remove`) Remove category

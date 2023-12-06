@@ -1,0 +1,901 @@
+.appcues-backdrop, .appcues-backdrop[data-pattern-type=fullscreen] {
+  position: fixed;
+  background-color: #eee;
+  z-index: 2147483546;
+}
+
+.appcues-backdrop[data-pattern-type=modal], .appcues-backdrop[data-pattern-type=left], .appcues-backdrop[data-pattern-type=shorty], .appcues-backdrop[data-pattern-type=slideout] {
+  opacity: 0.7;
+  background-color: black;
+}
+
+code, pre {
+  font-family: Menlo, Monaco, monospace, sans-serif;
+}
+
+div, p, ul, ol, table, dl, blockquote, pre {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+a[href], a[data-step] {
+  color: #15c;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+object, embed, video, img {
+  max-width: 100%;
+  width: auto;
+}
+
+video, img {
+  height: auto;
+}
+
+p, ul, ol, table, dl, figure, blockquote, pre {
+  margin: 0;
+  margin-bottom: 15px;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+hr {
+  margin-bottom: 15px;
+}
+
+blockquote {
+  margin-left: 1.6em !important;
+  padding-left: 0;
+  color: #777;
+  font-style: italic;
+}
+
+ul, ol {
+  padding-left: 2em;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+  margin: 2px;
+  padding: 0;
+  padding-left: 2em;
+  border: none;
+}
+
+dl dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 1em;
+  width: 100%;
+}
+table td, table th {
+  padding: 5px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+table thead td, table th {
+  font-weight: bold;
+  border-bottom-color: #888;
+}
+
+code {
+  background-color: #d8d7d7;
+}
+
+pre {
+  overflow: auto;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f8f8f8;
+  white-space: pre;
+  font-size: 90%;
+  color: #888;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #000;
+  padding: 0;
+  background: none;
+  text-rendering: optimizeLegibility;
+  margin: 0 0 0.5em 0;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 0.7em;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.appcues-button {
+  line-height: 1.42857em;
+}
+
+appcues {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-size: 14px;
+  display: none;
+  padding: 40px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2147483547;
+  overflow-wrap: break-word;
+}
+@media screen and (max-device-width: 480px) {
+  appcues {
+    padding: 10px;
+  }
+  appcues[data-pattern-type=left] {
+    padding: 0;
+  }
+}
+appcues.active {
+  display: block;
+}
+appcues[data-pattern-type=left] {
+  padding-top: 0;
+  padding-bottom: 0;
+  min-width: 95%;
+  right: initial;
+}
+appcues[data-pattern-type=modal], appcues[data-pattern-type=fullscreen] {
+  transform-origin: 50% 50%;
+  transition: opacity 0.16s cubic-bezier(0, 0, 0, 1), transform 0.32s cubic-bezier(0, 0, 0, 1);
+}
+appcues[data-pattern-type=modal].active, appcues[data-pattern-type=fullscreen].active {
+  opacity: 1;
+}
+appcues[data-pattern-type=modal].apc-hidden, appcues[data-pattern-type=fullscreen].apc-hidden {
+  transform: scale(0.97);
+  opacity: 0;
+  visibility: hidden;
+}
+appcues[data-pattern-type=left] {
+  transform-origin: 0 0;
+  transition: opacity 0.16s cubic-bezier(0, 0, 0, 1), transform 0.32s cubic-bezier(0, 0, 0, 1);
+}
+appcues[data-pattern-type=left].active {
+  opacity: 1;
+  transform: none;
+}
+appcues[data-pattern-type=left].apc-hidden {
+  transform: translateX(-400px);
+  opacity: 0;
+  visibility: hidden;
+}
+appcues[data-pattern-type=shorty], appcues[data-pattern-type=slideout] {
+  padding: 0;
+  overflow: hidden;
+}
+appcues[data-pattern-type=shorty] modal-container, appcues[data-pattern-type=slideout] modal-container {
+  width: 400px;
+  max-width: 400px;
+  display: inline-block;
+  transition: transform 0.8s cubic-bezier(0.2, 0.84, 0.35, 1), opacity 0.5s cubic-bezier(0, 0, 0, 1) 0.1s;
+}
+appcues[data-pattern-type=shorty] modal-container.fullscreen, appcues[data-pattern-type=slideout] modal-container.fullscreen {
+  position: fixed;
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
+}
+appcues[data-pattern-type=shorty] modal-container.fullscreen cue, appcues[data-pattern-type=slideout] modal-container.fullscreen cue {
+  overflow: hidden;
+}
+@media screen and (max-device-width: 440px) {
+  appcues[data-pattern-type=shorty] modal-container, appcues[data-pattern-type=slideout] modal-container {
+    width: 100%;
+  }
+  appcues[data-pattern-type=shorty] modal-container.fullscreen, appcues[data-pattern-type=slideout] modal-container.fullscreen {
+    max-width: calc(100% - 40px);
+  }
+}
+appcues[data-pattern-type=shorty][data-position=topRight] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=right] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=bottomRight] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=topRight] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=right] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=bottomRight] modal-container.fullscreen {
+  right: 20px;
+}
+appcues[data-pattern-type=shorty][data-position=topLeft] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=left] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=bottomLeft] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=topLeft] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=left] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=bottomLeft] modal-container.fullscreen {
+  left: 20px;
+}
+appcues[data-pattern-type=shorty][data-position=left] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=right] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=center] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=left] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=right] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=center] modal-container.fullscreen {
+  top: 50%;
+  transform: translateY(-50%);
+}
+appcues[data-pattern-type=shorty][data-position=top] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=center] modal-container.fullscreen, appcues[data-pattern-type=shorty][data-position=bottom] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=top] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=center] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=bottom] modal-container.fullscreen {
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+appcues[data-pattern-type=shorty][data-position^=top] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position^=top] modal-container.fullscreen {
+  top: 20px;
+}
+appcues[data-pattern-type=shorty][data-position^=bottom] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position^=bottom] modal-container.fullscreen {
+  bottom: 20px;
+}
+appcues[data-pattern-type=shorty][data-position=center] modal-container.fullscreen, appcues[data-pattern-type=slideout][data-position=center] modal-container.fullscreen {
+  transform: translateY(-54%);
+}
+appcues[data-pattern-type=shorty].apc-hidden modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden modal-container.fullscreen {
+  transition: transform 0.5s ease-in, opacity 0.4s cubic-bezier(0.5, 1, 1, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=top] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=top] modal-container.fullscreen {
+  transform: translateY(-50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=topLeft] modal-container.fullscreen, appcues[data-pattern-type=shorty].apc-hidden[data-position=bottomLeft] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=topLeft] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=bottomLeft] modal-container.fullscreen {
+  transform: translateX(-50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=bottom] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=bottom] modal-container.fullscreen {
+  transform: translateY(50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=topRight] modal-container.fullscreen, appcues[data-pattern-type=shorty].apc-hidden[data-position=bottomRight] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=topRight] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=bottomRight] modal-container.fullscreen {
+  transform: translateX(50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=left] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=left] modal-container.fullscreen {
+  transform: translateY(-50%) translateX(-50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=right] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=right] modal-container.fullscreen {
+  transform: translateY(-50%) translateX(50%);
+}
+appcues[data-pattern-type=shorty].apc-hidden[data-position=center] modal-container.fullscreen, appcues[data-pattern-type=slideout].apc-hidden[data-position=center] modal-container.fullscreen {
+  transform: translateY(-50%) scale(0.97);
+}
+appcues cue {
+  display: none;
+  position: relative;
+  background-color: white;
+  margin: 0 auto;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 0 6px #aaa;
+  box-sizing: border-box;
+  color: #888;
+  width: 100%;
+  max-width: 650px;
+  padding: 20px;
+}
+appcues cue.full-buttons {
+  padding-bottom: 20px;
+}
+appcues cue.appcues-actions-hidden {
+  padding-bottom: 20px;
+  min-height: 360px;
+}
+appcues cue.active {
+  display: block;
+}
+appcues cue > section {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-size: 100% !important;
+  font: inherit !important;
+  vertical-align: baseline !important;
+  display: block !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  opacity: 1;
+  box-sizing: content-box !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+appcues cue > section * {
+  box-sizing: border-box;
+}
+appcues cue > section .step-action-form input, appcues cue > section .step-action-form textarea, appcues cue > section .form-field input, appcues cue > section .form-field textarea {
+  border: 1px solid #DDD;
+  color: initial;
+  font-size: 14px;
+  padding: 8px;
+  width: 95%;
+}
+appcues cue > section .step-action-form input[type=date], appcues cue > section .form-field input[type=date] {
+  font-family: inherit;
+}
+appcues cue > section .step-action-form label.label-display, appcues cue > section .form-field label.label-display {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+  padding: 8px;
+  display: block;
+}
+appcues cue > section .step-action-form label.field-option, appcues cue > section .form-field label.field-option {
+  display: block;
+  font-weight: normal;
+  margin: 0;
+}
+appcues cue > section .step-action-form label.field-option input[type=radio], appcues cue > section .form-field label.field-option input[type=radio] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+appcues cue > section .step-action-form label.field-option input[type=radio] + span::before, appcues cue > section .form-field label.field-option input[type=radio] + span::before {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  vertical-align: -0.05em;
+  border-radius: 2em;
+  border: 0.1em solid #fff;
+  box-shadow: 0 0 0 0.15em #888;
+  margin-right: 0.7em;
+  transition: 0.5s ease all;
+}
+appcues cue > section .step-action-form label.field-option input[type=radio]:checked + span::before, appcues cue > section .form-field label.field-option input[type=radio]:checked + span::before {
+  background: #5cb85c;
+  box-shadow: 0 0 0 0.15em #888;
+}
+appcues cue > section .form-field {
+  margin: 10px 0;
+  padding: 10px 0;
+  font-size: 1.1em;
+}
+appcues cue > section .form-field.appcues-error label {
+  color: #EB6E5E;
+}
+appcues cue > section .form-field.appcues-error ul.messages {
+  color: #EB6E5E;
+  list-style: none;
+  margin: 5px 0;
+  padding: 0;
+}
+appcues cue > section .form-field.appcues-error ul.messages li {
+  display: block;
+}
+appcues cue > section .form-field.appcues-error input[type=text], appcues cue > section .form-field.appcues-error textarea {
+  border-color: #EB6E5E;
+}
+appcues cue > section .form-field .rating-options {
+  display: table;
+  width: 100%;
+}
+appcues cue > section .form-field .rating-option {
+  cursor: pointer;
+  display: table-cell;
+  font-weight: normal;
+  text-align: center;
+  min-width: 9%;
+  padding: 0 5px;
+}
+appcues cue > section .form-field .rating-option span {
+  background-color: #eee;
+  display: block;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+appcues cue > section .form-field .rating-option span:hover {
+  background-color: #888;
+  border: 1px solid #777;
+  color: white;
+}
+appcues cue > section .form-field .rating-option input[type=radio] {
+  display: none;
+}
+appcues cue > section .form-field .rating-option input[type=radio]:checked + span {
+  background-color: #6eb5e5;
+  border: 1px solid #429fde;
+  color: white;
+}
+appcues cue > section .form-field .rating-labels {
+  width: 100%;
+}
+appcues cue > section .form-field .rating-labels .left, appcues cue > section .form-field .rating-labels .right {
+  display: inline-block;
+  width: 50%;
+}
+appcues cue > section .form-field .rating-labels .left small, appcues cue > section .form-field .rating-labels .right small {
+  margin: 2px 5px;
+}
+appcues cue > section .form-field .rating-labels .right {
+  text-align: right;
+}
+appcues cue > section .form-field label.field-option {
+  display: block;
+  font-weight: normal;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 3px;
+}
+appcues cue > section .form-field label.field-option input[type=radio] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+appcues cue > section .form-field label.field-option input[type=radio] + span::before {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: -0.05em;
+  border-radius: 1em;
+  border: 0.125em solid #fff;
+  box-shadow: 0 0 0 0.15em #888;
+  margin-right: 0.7em;
+  transition: 0.5s ease all;
+}
+appcues cue > section .form-field label.field-option input[type=radio]:checked + span::before {
+  background: #5cb85c;
+  box-shadow: 0 0 0 0.25em #888;
+}
+appcues cue img {
+  max-width: 100%;
+}
+appcues cue header {
+  position: relative;
+}
+appcues cue header h2 {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 15px;
+  color: #333;
+}
+@media screen and (max-device-width: 480px) {
+  appcues cue header h2 {
+    text-align: center;
+  }
+}
+appcues cue p {
+  margin: 0;
+  margin-bottom: 15px;
+}
+appcues cue strong {
+  font-weight: bold;
+  color: #6f6f6f;
+}
+appcues cue .appcues-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+}
+appcues cue .appcues-actions.hidden {
+  display: none;
+}
+appcues cue .appcues-actions-left, appcues cue .appcues-actions-right {
+  width: 50%;
+  display: inline-block;
+}
+appcues cue .appcues-actions-left.appcues-actions-align-center, appcues cue .appcues-actions-right.appcues-actions-align-center {
+  text-align: center;
+}
+appcues cue .appcues-actions-left.appcues-actions-full-row, appcues cue .appcues-actions-right.appcues-actions-full-row {
+  width: 100%;
+}
+appcues cue .appcues-actions-left {
+  text-align: left;
+}
+appcues cue .appcues-actions-right {
+  text-align: right;
+}
+appcues cue .appcues-backdrop, appcues cue .appcues-backdrop[data-pattern-type=fullscreen] {
+  position: fixed;
+  background-color: #eee;
+  z-index: 2147483546;
+}
+appcues cue .appcues-backdrop[data-pattern-type=modal], appcues cue .appcues-backdrop[data-pattern-type=left], appcues cue .appcues-backdrop[data-pattern-type=shorty], appcues cue .appcues-backdrop[data-pattern-type=slideout] {
+  opacity: 0.7;
+  background-color: black;
+}
+appcues cue .apc-hero {
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 4em 0 !important;
+  margin: -21px -21px 0;
+}
+appcues cue .apc-hero h1, appcues cue .apc-hero h2 {
+  color: white;
+}
+appcues[data-pattern-type=modal] cue, appcues[data-pattern-type=left] cue {
+  box-shadow: none;
+}
+appcues[data-pattern-type=shorty] modal-container cue, appcues[data-pattern-type=slideout] modal-container cue {
+  box-shadow: none;
+  min-height: 150px;
+}
+appcues[data-pattern-type=shorty] modal-container cue .appcues-actions .appcues-powered-by-text, appcues[data-pattern-type=slideout] modal-container cue .appcues-actions .appcues-powered-by-text {
+  transform: translateY(10px);
+}
+appcues[data-pattern-type=shorty] modal-container cue .form-field .rating-option span, appcues[data-pattern-type=slideout] modal-container cue .form-field .rating-option span {
+  padding: 10px 0;
+}
+appcues[data-pattern-type=left] cue {
+  min-height: 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-top: 26px;
+  margin: 0;
+}
+
+.appcues-progress {
+  background-color: #ddd;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  height: 6px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 650px;
+}
+
+.appcues-progress-bar-success {
+  background-color: #5cb85c;
+  height: 100%;
+  width: 0;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-transition: width 0.7s ease-out 0.4s;
+  -moz-transition: width 0.7s ease-out 0.4s;
+  transition: width 0.7s ease-out 0.4s;
+}
+.appcues-progress-bar-success[aria-valuenow="100"] {
+  border-radius: 0;
+}
+
+[data-pattern-type=modal] .appcues-progress, [data-pattern-type=shorty] .appcues-progress, [data-pattern-type=slideout] .appcues-progress {
+  border: none;
+}
+
+[data-pattern-type=left] .appcues-progress {
+  border: none;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+}
+[data-pattern-type=left] .appcues-progress .appcues-progress-bar-success {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.appcues-button {
+  background-color: #ccc;
+  cursor: pointer;
+  padding: 8px 18px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  -webkit-font-smoothing: auto;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  -moz-transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+.appcues-button:hover {
+  text-decoration: none;
+  color: black;
+  background-color: #dedede;
+}
+.appcues-button.appcues-button-success {
+  background-color: #5cb85c;
+}
+.appcues-button.appcues-button-success:hover {
+  background-color: #75c375;
+  text-decoration: unset;
+}
+.appcues-button.appcues-button-success.disabled {
+  background-color: #eaf6ea;
+}
+.appcues-button[data-step], .appcues-button[href] {
+  color: white;
+}
+
+.appcues-skip {
+  width: 100%;
+  max-width: 650px;
+  position: relative;
+  margin: 0 auto;
+}
+appcues[data-pattern-type=left] .appcues-skip {
+  position: absolute;
+  margin: 6px 0;
+}
+.appcues-skip > a {
+  cursor: pointer;
+  display: block;
+  background-color: #ddd;
+  color: #888;
+  opacity: 0.3;
+  border-bottom-left-radius: 3px;
+  padding: 3px 10px 5px;
+  position: absolute;
+  right: 0;
+  font-size: 23px;
+  line-height: 1;
+  top: 0;
+  z-index: 10;
+  width: 35px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  overflow-wrap: normal;
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+.appcues-skip > a:hover {
+  text-decoration: none;
+  opacity: 1;
+  color: #222;
+}
+
+.appcues-backdrop, .appcues-backdrop[data-pattern-type=fullscreen] {
+  position: fixed;
+  background-color: #eee;
+  z-index: 2147483546;
+}
+
+.appcues-backdrop[data-pattern-type=modal], .appcues-backdrop[data-pattern-type=left], .appcues-backdrop[data-pattern-type=shorty], .appcues-backdrop[data-pattern-type=slideout] {
+  opacity: 0.7;
+  background-color: black;
+}
+
+.appcues-backdrop, .appcues-backdrop[data-pattern-type=fullscreen] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #888;
+  font-weight: 300;
+  font-size: larger;
+  padding: 15px;
+  text-align: center;
+}
+
+.appcues-backdrop, .appcues-backdrop[data-pattern-type=fullscreen] {
+  transition: opacity 0.32s linear;
+}
+.appcues-backdrop.apc-hidden, .appcues-backdrop.appcues-backdrop-transparent {
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+.appcues-responsive-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.appcues-responsive-embed iframe, .appcues-responsive-embed object, .appcues-responsive-embed embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.appcues-backdrop, .appcues-backdrop[data-pattern-type=fullscreen] {
+  position: fixed;
+  background-color: #eee;
+  z-index: 2147483546;
+}
+
+.appcues-backdrop[data-pattern-type=modal], .appcues-backdrop[data-pattern-type=left], .appcues-backdrop[data-pattern-type=shorty], .appcues-backdrop[data-pattern-type=slideout] {
+  opacity: 0.7;
+  background-color: black;
+}
+
+.appcues-powered-by-text {
+  text-align: right;
+  padding: 5px;
+  line-height: 1;
+}
+.appcues-powered-by-text a {
+  font-family: Helvetica Neue, Helvetica, sans-serif !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  color: #888 !important;
+  font-size: 10px !important;
+}
+.appcues-powered-by-text a svg {
+  vertical-align: bottom;
+}
+.appcues-powered-by-text a svg > g, .appcues-powered-by-text a span {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.appcues-powered-by-text a span {
+  position: relative;
+  margin-left: 3px;
+}
+.appcues-powered-by-text a span:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  visibility: hidden;
+  background: #4baad4;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.appcues-powered-by-text a:hover, .appcues-powered-by-text a:active, .appcues-powered-by-text a:focus {
+  color: #4baad4;
+}
+.appcues-powered-by-text a:hover svg > g, .appcues-powered-by-text a:active svg > g, .appcues-powered-by-text a:focus svg > g {
+  fill: #4baad4;
+}
+.appcues-powered-by-text a:hover span:before, .appcues-powered-by-text a:active span:before, .appcues-powered-by-text a:focus span:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.appcues-powered-by-badge {
+  font-family: Helvetica Neue, Helvetica, sans-serif !important;
+  background: rgba(255, 255, 255, 0.4);
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  padding: 6px 8px 7px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  display: block;
+  z-index: 2147483547;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.appcues-powered-by-badge:before {
+  background-color: white;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.appcues-powered-by-badge:hover {
+  border-color: #4baad4;
+}
+.appcues-powered-by-badge:hover:before {
+  height: 90px;
+  opacity: 1;
+}
+.appcues-powered-by-badge:hover .appcues-powered-by-content {
+  color: #4baad4 !important;
+}
+.appcues-powered-by-badge:hover .appcues-powered-by-content svg > g {
+  fill: #4baad4;
+}
+.appcues-powered-by-badge a {
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+.appcues-powered-by-badge .appcues-powered-by-content {
+  font-family: Helvetica Neue, Helvetica, sans-serif !important;
+  display: table-row;
+  color: #555555 !important;
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+.appcues-powered-by-badge .appcues-powered-by-content svg > g {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.appcues-powered-by-badge .appcues-powered-by-content .logo-container, .appcues-powered-by-badge .appcues-powered-by-content .text-container {
+  display: table-cell;
+  vertical-align: middle;
+  height: 20px;
+}
+.appcues-powered-by-badge .appcues-powered-by-content .logo-container {
+  text-align: center;
+  width: 20px;
+}
+.appcues-powered-by-badge .appcues-powered-by-content .text-container {
+  font-size: 12px !important;
+  padding-left: 3px;
+  line-height: 1;
+}
+.appcues-powered-by-badge .appcues-powered-by-content .text-container > small {
+  font-size: 6px !important;
+  text-transform: uppercase;
+  display: block;
+}

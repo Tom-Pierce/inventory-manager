@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+
+    h1= title
+
+    form(method="POST" action="")
+        div.form-group
+            label(for="name") Name:
+            input#name.form-input(type="text" name="name" required=true value=(product===undefined ? "" : product.name))
+
+        div.form-group
+            label(for="description") Description:
+            textarea#description.form-input(name="description" required=true) #{(product===undefined ? "" : product.description)}
+
+        div.form-group
+            label(for="price") Price:
+            input#price.form-input(type="number" name="price" required=true value=(product===undefined ? "" : product.price))
+
+        div.form-group
+            label(for="stock") Stock:
+            input#stock.form-input(type="number" name="stock" required=true value=(product===undefined ? "" : product.stock))
+
+        div.form-group
+            label(for="category") Category:
+            select#category.form-input(name="category")
+                each category in category_list
+                    option(value=category._id selected=(product === undefined ? false : (product.category.toString()===category._id.toString() ? true : false))) #{category.name}
+
+        button.btn(type="submit") Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
